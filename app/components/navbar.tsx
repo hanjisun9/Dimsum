@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
@@ -6,7 +7,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
 
         <div className="flex items-center">
-          <Image src="/logo.png" alt="Logo Feast Dimsum" width={60} height={60} className="object-contain"/>
+          <Image src="/logo.png" alt="Logo Feast Dimsum" width={60} height={60} className="object-contain" />
         </div>
 
         <div className="hidden md:flex gap-8 text-[#72412D] font-medium">
@@ -17,12 +18,8 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="text-[#72412D] font-semibold">Masuk</button>
-          <button className="bg-[#72412D] text-white px-5 py-2 rounded-full font-semibold">
-            Daftar
-          </button>
+          <Link href="/admin/login" className="bg-[#72412D] text-white px-5 py-2 rounded-full font-semibold">Join Us</Link>
         </div>
-
       </div>
     </nav>
   );
