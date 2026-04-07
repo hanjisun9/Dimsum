@@ -1,11 +1,21 @@
-export const API_URL = "https://dimsumwrap3d.berkahost.biz.id/api";
+import axios from "axios";
 
-export const getToken = () => {
-    if (typeof window === "undefined") return null;
-    return localStorage.getItem("token");
-};
+export const api = axios.create({
+    baseURL: "https://dimsumwrap3d.berkahost.biz.id/",
+    headers: {
+        "Content-Type": "application/json",
+    },
+});
 
-export const authHeader = (): HeadersInit => {
-    const token = getToken();
-    return token ? { Authorization: `Bearer ${token}` } : {};
-}
+// AUTO ATTACH TOKEN
+api.interceptors.request.use((config) => {
+    const token = typeof window !== "undefined"
+        ? localStorage.getItem("token")
+        : null;
+
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+});

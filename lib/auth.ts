@@ -1,5 +1,3 @@
-import { isAdminEmail } from "./admin";
-
 export const requiredAuth = () => {
     if (typeof window === "undefined") return;
     const token = localStorage.getItem("token");
@@ -7,8 +5,10 @@ export const requiredAuth = () => {
     if (!token) {
         window.location.href = "/login";
     } 
-    if (!isAdminEmail()) {
-        alert("Anda tidak memiliki akses ke halaman ini.");
-        window.location.href = "/";
-    }
+}
+
+export const saveAuth = (token: string, user: any) => {
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("role", user.role);
 }
