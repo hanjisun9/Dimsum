@@ -11,7 +11,12 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
         pathname.startsWith("/keranjang") ||
         pathname.startsWith("/profile") ||
         pathname.startsWith("/transaksi") ||
-        pathname.startsWith("/notifikasi");
+        pathname.startsWith("/notifikasi") ||
+        pathname.startsWith("/admin/products") ||
+        pathname.startsWith("/admin/profile") ||
+        pathname.startsWith("/admin/dashboard") ||
+        pathname.startsWith("/admin/transaction") ||
+        pathname.startsWith("/admin/notification");
 
     return (
         <>

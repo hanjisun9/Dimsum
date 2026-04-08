@@ -14,6 +14,11 @@ import {
   VideosIcon,
 } from "./icons";
 
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  window.location.href = "/login";
+};
+
 const menuItems = [
   { id: 1, label: "User Info", icon: HomeIcon, link: "/profile" },
   { id: 2, label: "Keranjang", icon: ArticleIcon, link: "/keranjang" },
@@ -84,7 +89,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="flex items-center gap-3 text-[#B94A48] cursor-pointer">
+      <div onClick={handleLogout} className="flex items-center gap-3 text-[#B94A48] cursor-pointer">
         <LogoutIcon />
         {!toggleCollapse && <span>Log Out</span>}
       </div>
