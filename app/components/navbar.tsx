@@ -53,7 +53,7 @@ export default function Navbar() {
         </div>
         <div className="flex items-center gap-4">
           <Link
-            href="/components/login"
+            href="/login"
             className="bg-[#C3473F] text-white px-6 py-2 rounded-full font-semibold shadow-md hover:bg-[#B71C1C] transition-all duration-300"
           >
             Join Us

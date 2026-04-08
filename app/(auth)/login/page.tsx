@@ -1,4 +1,5 @@
 "use client";
+import { saveAuth } from "@/lib/auth";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -24,7 +25,7 @@ export default function Home() {
 
             const data = res.data;
 
-            localStorage.setItem("token", data.data.token);
+            saveAuth(data.data.token, data.data.user);
             localStorage.setItem("user", JSON.stringify(data.data.user));
             localStorage.setItem("role", data.data.user.role);
 
@@ -35,6 +36,7 @@ export default function Home() {
             }
 
         } catch (err: any) {
+            console.log(err.response);
             alert(err.response?.data?.message || "Login gagal");
         }
     };
@@ -44,7 +46,7 @@ export default function Home() {
 
         try {
             const res = await api.post("/auth/register", {
-                nama: regName, // ✅ FIX
+                nama: regName,
                 email: regEmail,
                 password: regPassword,
             });
@@ -61,7 +63,6 @@ export default function Home() {
         <div className="h-screen flex items-center justify-center bg-[#e6d7d5]">
             <div className="relative overflow-hidden w-[768px] max-w-full min-h-[480px] bg-[#f4eceb] rounded-[30px] shadow-xl">
 
-                {/* Register */}
                 <div className={`absolute top-0 left-0 h-full w-1/2 transition-all duration-700
                         ${active
                         ? "translate-x-full opacity-100 scale-100 z-30 pointer-events-auto"
@@ -78,7 +79,6 @@ export default function Home() {
                     </form>
                 </div>
 
-                {/* Login */}
                 <div className={`absolute top-0 left-0 h-full w-1/2 transition-all duration-700
                         ${active
                         ? "opacity-0 scale-95 pointer-events-none z-10"
@@ -102,7 +102,6 @@ export default function Home() {
                     </form>
                 </div>
 
-                {/* OVERLAY */}
                 <div
                     className={`absolute top-0 left-1/2 w-1/2 h-full overflow-hidden transition-all duration-700 z-40
           ${active ? "-translate-x-full rounded-r-[150px]" : "rounded-l-[150px]"}`}
@@ -112,7 +111,6 @@ export default function Home() {
             ${active ? "translate-x-1/2" : ""}`}
                     >
 
-                        {/* overlay kiri */}
                         <div
                             className={`absolute w-1/2 h-full flex flex-col items-center justify-center px-8 text-center transition-all duration-700
               ${active ? "translate-x-0" : "-translate-x-[200%]"}`}
@@ -129,7 +127,6 @@ export default function Home() {
                             </button>
                         </div>
 
-                        {/* overlay kanan */}
                         <div
                             className={`absolute right-0 w-1/2 h-full flex flex-col items-center justify-center px-8 text-center transition-all duration-700
               ${active ? "translate-x-[200%]" : ""}`}

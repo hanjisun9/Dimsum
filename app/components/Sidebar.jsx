@@ -15,7 +15,7 @@ import {
 } from "./icons";
 
 const menuItems = [
-  { id: 1, label: "User Info", icon: HomeIcon, link: "/" },
+  { id: 1, label: "User Info", icon: HomeIcon, link: "/profile" },
   { id: 2, label: "Keranjang", icon: ArticleIcon, link: "/keranjang" },
   { id: 3, label: "Transaksi", icon: UsersIcon, link: "/transaksi" },
   { id: 4, label: "Notifikasi", icon: VideosIcon, link: "/notifikasi" },
